@@ -1,15 +1,9 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/PromptModel";
 
-interface PostRequest {
-  userId: string;
-  prompt: string;
-  tag: string;
-}
-
 
 export const POST = 
-  async (req : { json: () => Promise<PostRequest> }) => {
+  async (req : Request) => {
     const {userId, prompt, tag} = await req.json();
 
     try {
