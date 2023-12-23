@@ -2,11 +2,6 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/PromptModel";
 
-interface GETResquest {
-  userId: string;
-  prompt: string;
-  tag: string;
-}
 
 type ParamsType = {
   params: {
@@ -33,7 +28,7 @@ export const GET = async (request: Request, {params}: ParamsType) => {
 }
 
 // PATCH (update)
-export const PATCH = async (request: { json: () => Promise<GETResquest> }, {params}: ParamsType) => {
+export const PATCH = async (request: Request, {params}: ParamsType) => {
   const {prompt, tag} = await request.json()
 
   try {
