@@ -1,11 +1,6 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/PromptModel";
 
-interface PostRequest {
-  userId: string;
-  prompt: string;
-  tag: string;
-}
 
 type ParamsType = {
   params: {
@@ -13,7 +8,7 @@ type ParamsType = {
   }
 }
 
-export const GET = async (request : PostRequest, {params}: ParamsType) => {
+export const GET = async (request : Request, {params}: ParamsType) => {
   try {
     await connectToDB();
 
