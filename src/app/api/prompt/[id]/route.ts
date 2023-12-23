@@ -57,7 +57,7 @@ export const PATCH = async (request: { json: () => Promise<GETResquest> }, {para
 }
 
 // DELETE (delete)
-export const DELETE = async (request: { json: () => Promise<GETResquest> }, {params}: ParamsType) => {
+export const DELETE = async (request: Request , {params}: ParamsType) => {
   try {
     await connectToDB();
 
