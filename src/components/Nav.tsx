@@ -44,7 +44,7 @@ const Nav = () => {
 
       {/* Desktop navigation*/}
       <div className="sm:flex hidden">
-        {status === 'authenticated' ? (
+        {session?.user.id ? (
           
           <div className="flex gap-3 md:gap-5">
             <Link
