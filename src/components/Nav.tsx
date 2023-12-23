@@ -2,7 +2,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { signIn, signOut, useSession, getProviders } from "next-auth/react"
+import {  signIn, signOut, useSession, getProviders } from "next-auth/react"
 
 type ProviderType = {
   id: string;
@@ -10,7 +10,7 @@ type ProviderType = {
 }
 
 const Nav = () => {
-  const isUserLoggedIn = true
+  const {data: session, status } = useSession()
 
   const [providers, setProviders] = useState<ProviderType[] | unknown>(null)
   const [dropDownMenu, setDropDownMenu] = useState(false)
@@ -20,14 +20,13 @@ const Nav = () => {
       const response = await getProviders();
 
       console.log(response);
-      
-
-
       setProviders(response)
     }
 
     setProvidersf()
   }, [])
+
+  console.log(session?.user)
 
   return (
     <nav  className="flex-between w-full mb-16 pt-3">
@@ -45,7 +44,8 @@ const Nav = () => {
 
       {/* Desktop navigation*/}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {status === 'authenticated' ? (
+          
           <div className="flex gap-3 md:gap-5">
             <Link
               href='/create-prompt'
@@ -53,23 +53,30 @@ const Nav = () => {
             >
               Create Post
             </Link>
-
+            <Link
+              href='/profile'
+              className="outline_btn"
+            >
+              My Profile
+            </Link>
             <button
               type="button"
-              onClick={() => signOut}
+              onClick={() => signOut()}
               className="outline_btn"
             >
               Sign Out
             </button>
 
             <Image 
-              src='/assets/images/logo.svg'
+              src={session?.user.image || '/assets/images/logo.svg'}
               width={37}
               height={37}
               alt="profile"
               className="rounded-full"
             />
+
           </div>
+          
         ) : (
           <>
             {providers && 
@@ -91,10 +98,10 @@ const Nav = () => {
 
       {/* mobile navigation*/}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image 
-              src='/assets/images/logo.svg'
+              src={session?.user.image || '/assets/images/logo.svg'}
               width={37}
               height={37}
               alt="profile"
