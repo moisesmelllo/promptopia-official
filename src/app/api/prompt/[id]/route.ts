@@ -14,7 +14,7 @@ type ParamsType = {
   }
 }
 
-export const GET = async (request: GETResquest, {params}: ParamsType) => {
+export const GET = async (request: Request, {params}: ParamsType) => {
   try {
     await connectToDB();
 
