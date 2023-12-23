@@ -18,8 +18,8 @@ interface PromptCardProps {
     tag: string;
   };
   handleTagClick?: (tag: string) => void;
-  handleEdit: () => void;
-  handleDelete: () => void;
+  handleEdit?: () => void;
+  handleDelete?: () => void;
 }
 
 
