@@ -12,7 +12,9 @@ const Feed = () => {
   }
 
   const fetchPosts = async () => {
-    const response = await fetch('api/prompt/get');
+    const response = await fetch('api/prompt/get', {
+      cache: 'no-store'
+    });
     const data = await response.json();
 
     setPosts(data)  
