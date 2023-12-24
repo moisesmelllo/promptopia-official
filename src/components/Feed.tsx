@@ -11,18 +11,18 @@ const Feed = () => {
     
   }
 
-  const fetchPosts = async () => {
-    const response = await fetch('api/prompt/get', {
-      cache: 'no-store'
-    });
-    const data = await response.json();
-
-    setPosts(data)  
-    console.log(posts);
-    
-  }
-
+  
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('api/prompt/get', {
+        method: 'GET'
+      });
+      const data = await response.json();
+  
+      setPosts(data)  
+      console.log(posts);
+      
+    }
     fetchPosts();
   }, [])
 
@@ -44,7 +44,6 @@ const Feed = () => {
               post={post}
             />
           ))}
-      <button onClick={fetchPosts}>Refresh</button>
     </section>
   )
 }
