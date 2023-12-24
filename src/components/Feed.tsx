@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, ReactNode } from "react"
+import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard"
 
 interface Post {
@@ -8,7 +8,6 @@ interface Post {
 }
 
 interface PromptCardListProps {
-  data: Post[]; // Substitua YourDataType pelo tipo de dados esperado
   handleTagClick: () => void;
 }
 
@@ -21,12 +20,11 @@ const Feed = () => {
   }
 
   const PromptCardList = ({
-    data, 
     handleTagClick}: 
     PromptCardListProps) => {
       return (
         <div className="mt-16 prompt_layout">
-          {data && data.map((post: any) => (
+          {posts.map((post: any) => (
             <PromptCard
               key={post._id}
               post={post}
@@ -40,12 +38,9 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('api/prompt/get');
-      console.log(response);
-      
       const data = await response.json();
 
       setPosts(data)
-      console.log(data)
     }
 
     fetchPosts();
@@ -63,8 +58,7 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList 
-        data={posts}
+      <PromptCardList
         handleTagClick={() => {}}
       />
     </section>
