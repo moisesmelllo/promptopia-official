@@ -24,7 +24,7 @@ const MyProfile = () => {
   }
 
   if(session?.user.id) fetchPosts()
-  }, [])
+  }, [session])
   
   const handleEdit = (post: postType) => {
     router.push(`/update-prompt?id=${post._id}`)
@@ -53,7 +53,7 @@ const MyProfile = () => {
     <Profile 
       name='my'
       desc='Welcome to your personalized profile page'
-      data={posts}
+      posts={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
     />
