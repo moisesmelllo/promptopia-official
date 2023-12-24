@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 
 interface PromptCardProps {
@@ -26,7 +26,6 @@ interface PromptCardProps {
 const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCardProps) => {
   const [copied, setCopied] = useState('')
   const {data: session} = useSession()
-  const router = useRouter();
   const pathname = usePathname()
   console.log('pathname' + pathname);
   
