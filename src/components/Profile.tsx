@@ -1,10 +1,12 @@
+import { useSession } from "next-auth/react";
 import PromptCard from "./PromptCard";
+import { redirect } from "next/navigation";
 
 
 interface Profiledata {
   name: string;
   desc: string;
-  data: {
+  posts: {
     _id: number;
     creator: {
       _id: number;
@@ -19,9 +21,8 @@ interface Profiledata {
   handleDelete: (e: any) => void;
 }
 
+const Profile = ({name, desc, posts, handleEdit, handleDelete}: Profiledata) => {
 
-
-const Profile = ({name, desc, data, handleEdit, handleDelete}: Profiledata) => {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -32,7 +33,7 @@ const Profile = ({name, desc, data, handleEdit, handleDelete}: Profiledata) => {
       <p className="desc text-left">{desc}</p>
 
       <div className="mt-10 prompt_layout">
-        {data.map((post) => (
+        {posts.map((post) => (
           <PromptCard 
             key={post._id}
             post={post}
@@ -44,5 +45,6 @@ const Profile = ({name, desc, data, handleEdit, handleDelete}: Profiledata) => {
     </section>
   )
 }
+
 
 export default Profile
