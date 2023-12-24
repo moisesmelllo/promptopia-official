@@ -19,22 +19,6 @@ const Feed = () => {
     
   }
 
-  const PromptCardList = ({
-    handleTagClick}: 
-    PromptCardListProps) => {
-      return (
-        <div className="mt-16 prompt_layout">
-          {posts.map((post: any) => (
-            <PromptCard
-              key={post._id}
-              post={post}
-              handleTagClick={handleTagClick}
-            />
-          ))}
-        </div>
-      )
-  }
-
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('api/prompt/get');
@@ -58,9 +42,12 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList
-        handleTagClick={() => {}}
-      />
+      {posts.map((post: any) => (
+            <PromptCard
+              key={post._id}
+              post={post}
+            />
+          ))}
     </section>
   )
 }
