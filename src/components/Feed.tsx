@@ -14,12 +14,7 @@ const Feed = () => {
   
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('api/prompt/get', {
-        method: 'GET',
-        headers: {
-          'Cache-Control': 'no-cache',
-        }
-      });
+      const response = await fetch('api/prompt/get');
       const data = await response.json();
   
       setPosts(data)  
