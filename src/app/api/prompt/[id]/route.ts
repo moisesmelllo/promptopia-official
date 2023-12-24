@@ -2,12 +2,13 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/PromptModel";
 
-
 type ParamsType = {
   params: {
     id: string
   }
 }
+
+export const dynamic = 'force-dynamic'
 
 export const GET = async (request: Request, {params}: ParamsType) => {
   try {
