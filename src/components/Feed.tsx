@@ -26,7 +26,7 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full flex-center max-w-xl">
         <input 
           type="text" 
           placeholder="Search for a tag or a username"
@@ -36,12 +36,14 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      {posts && posts.map((post: any) => (
-            <PromptCard
-              key={post._id}
-              post={post}
-            />
-          ))}
+      <div className="prompt_layout mt-10">
+        {posts && posts.map((post: any) => (
+              <PromptCard
+                key={post._id}
+                post={post}
+              />
+            ))}
+      </div>
     </section>
   )
 }
