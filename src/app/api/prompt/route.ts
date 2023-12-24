@@ -8,7 +8,11 @@ export const GET = async (request: Request) => {
     const prompts = await Prompt.find({}).populate('creator')
 
     return new Response(JSON.stringify(prompts), {
-      status: 200
+      status: 200,
+      headers: {
+        'Cache-Control': 'no-store', // Impede o armazenamento em cache
+        'Pragma': 'no-cache', // Impede o armazenamento em cache em navegadores mais antigos
+      }
     });
   } catch (error) {
     console.error('Erro ao buscar prompts:', error);
