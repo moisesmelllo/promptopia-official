@@ -1,27 +1,17 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/PromptModel";
 
+export const GET = async (request: Request) => {
+  try {
+    await connectToDB();
 
-export const POST = 
-  async (req : Request) => {
-    const {userId, prompt, tag} = await req.json();
+    const prompts = await Prompt.find({}).populate('creator')
 
-    try {
-      await connectToDB();
-      const newPrompt = new Prompt({
-        creator: userId,
-        prompt,
-        tag
-      })
-
-      await newPrompt.save()
-
-      return new Response(JSON.stringify(newPrompt), {
-        status: 201
-      })
-
-    } catch (error) {
-      return new Response('Failed to create a new prompt', {status: 500})
-    }
-
+    return new Response(JSON.stringify(prompts), {
+      status: 200
+    });
+  } catch (error) {
+    console.error('Erro ao buscar prompts:', error);
+    return new Response('Falha ao buscar prompts', { status: 500 });
+  }
 }
