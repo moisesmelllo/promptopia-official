@@ -1,13 +1,11 @@
 'use client'
 import { useState, useEffect } from "react"
-import { useSession } from "next-auth/react"
 import PromptCard from "./PromptCard"
 
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('')
   const [posts, setPosts] = useState([])
-  const {data: session} = useSession()
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     
@@ -28,7 +26,7 @@ const Feed = () => {
       console.log(posts);
       
     }
-    if(session?.user.id) fetchPosts()
+      fetchPosts()
   }, [])
 
   return (
@@ -43,7 +41,7 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      {posts.map((post: any) => (
+      {posts && posts.map((post: any) => (
             <PromptCard
               key={post._id}
               post={post}
