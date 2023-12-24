@@ -2,18 +2,10 @@
 import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard"
 
-interface Post {
-  _id: string;
-  // Adicione os outros campos do post conforme necessário
-}
-
-interface PromptCardListProps {
-  handleTagClick: () => void;
-}
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('')
-  const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState([])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     
