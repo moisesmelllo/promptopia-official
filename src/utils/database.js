@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 
 // MONGO_URL é a chave que você pega no mongodb e estou
