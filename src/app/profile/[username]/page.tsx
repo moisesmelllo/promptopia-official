@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { usePathname } from "next/navigation";
 
-const page = () => {
+const UserPage = () => {
   const {data: session} = useSession()
   const [posts, setPosts] = useState([])
   const pathname = usePathname()
@@ -36,4 +36,4 @@ const page = () => {
   )
 }
 
-export default page
+export default UserPage
