@@ -11,6 +11,7 @@ type ProviderType = {
 
 const Nav = () => {
   const {data: session } = useSession()
+  const username = session?.user.name.replace(' ', '').toLowerCase()
 
   const [providers, setProviders] = useState<ProviderType[] | unknown>(null)
   const [dropDownMenu, setDropDownMenu] = useState(false)
@@ -58,7 +59,7 @@ const Nav = () => {
             </button>
 
             <Link
-              href='/profile'
+              href={`/profile/${username}`}
             >
               <Image
                 src={session?.user.image || '/assets/images/logo.svg'}
