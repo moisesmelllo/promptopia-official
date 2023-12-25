@@ -9,7 +9,7 @@ declare module "next-auth" {
       /** The user's postal address. */
       id: number;
       email: string;
-      username: string;
+      name: string;
       image: string;
     }
   }

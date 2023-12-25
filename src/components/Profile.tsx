@@ -17,8 +17,8 @@ interface Profiledata {
     prompt: string;
     tag: string;
 }[]
-  handleEdit: (e: any) => void;
-  handleDelete: (e: any) => void;
+  handleEdit?: (e: any) => void;
+  handleDelete?: (e: any) => void;
 }
 
 const Profile = ({name, desc, posts, handleEdit, handleDelete}: Profiledata) => {
@@ -33,7 +33,7 @@ const Profile = ({name, desc, posts, handleEdit, handleDelete}: Profiledata) => 
       <p className="desc text-left">{desc}</p>
 
       <div className="mt-10 prompt_layout">
-        {posts.map((post) => (
+        {posts && posts.map((post) => (
           <PromptCard 
             key={post._id}
             post={post}

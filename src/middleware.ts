@@ -10,8 +10,6 @@ export async function middleware(request: NextRequest) {
   const privatePath = path === '/profile'
 
   const token = request.cookies.get('next-auth.session-token')?.value || ''
-  console.log(request)
-
   
   if (privatePath && !token) {
     return NextResponse.redirect(new URL('/', request.nextUrl))
