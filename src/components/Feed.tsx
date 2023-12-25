@@ -22,7 +22,6 @@ const handleSearchChange = (e: any) => {
 
   const resultadoFiltrado = posts.filter(obj => obj.prompt.toLowerCase().includes(searchText.toLowerCase()) || obj.tag.toLowerCase().includes(searchText.toLowerCase()) || obj.creator.username.toLowerCase().includes(searchText.toLowerCase()))
   setSearchedPosts(resultadoFiltrado)
-  console.log(posts[0])
 };
   
   useEffect(() => {

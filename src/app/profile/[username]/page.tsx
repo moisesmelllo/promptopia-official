@@ -13,7 +13,6 @@ const page = () => {
   const pathname = usePathname()
   const username = pathname.match(/\/profile\/(.*)/)![1];
 
-  console.log(username)
 
   useEffect(() => {
   const fetchPosts = async () => {
@@ -27,7 +26,6 @@ const page = () => {
   fetchPosts()
 }, [])
 
-console.log(session)
   return (
     <Profile 
       name={username}
