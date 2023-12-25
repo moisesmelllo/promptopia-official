@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 import Form from "@components/Form"
-import { Session } from "inspector"
 
 const EditPrompt = () => {
   const router = useRouter()
@@ -31,7 +30,7 @@ const EditPrompt = () => {
     if(promptId) getPromptDetails()
   }, [promptId])
 
-  const updatePrompt =async (e: React.FormEvent<HTMLFormElement>) => {
+  const updatePrompt = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true)
 
