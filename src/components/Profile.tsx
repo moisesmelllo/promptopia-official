@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import PromptCard from "./PromptCard";
-import { redirect } from "next/navigation";
 
 
 interface Profiledata {

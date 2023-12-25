@@ -4,14 +4,13 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { usePathname } from "next/navigation";
 
-
-
-
 const page = () => {
   const {data: session} = useSession()
   const [posts, setPosts] = useState([])
   const pathname = usePathname()
   const username = pathname.match(/\/profile\/(.*)/)![1];
+  const sessionUser = session?.user.name.toLocaleLowerCase().replace(' ', '')
+  const isMyProfile = username === sessionUser
 
 
   useEffect(() => {
@@ -25,10 +24,11 @@ const page = () => {
 
   fetchPosts()
 }, [])
+  
 
   return (
     <Profile 
-      name={username}
+      name={isMyProfile ? 'My' : username}
       desc='Welcome to your personalized profile page'
       posts={posts}
 
