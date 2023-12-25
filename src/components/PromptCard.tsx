@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-
+import { useRouter } from "next/navigation";
 
 interface PromptCardProps {
   post: {
@@ -24,6 +24,7 @@ interface PromptCardProps {
 
 
 const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCardProps) => {
+  const router = useRouter()
   const [copied, setCopied] = useState('')
   const {data: session} = useSession()
   const pathname = usePathname()
@@ -32,6 +33,10 @@ const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCard
     setCopied(post.prompt!);
     navigator.clipboard.writeText(post.prompt!)
     setTimeout(() => setCopied(''), 3000);
+  }
+
+  function goToProfile(username: string) {
+    router.push(`profile/${username}`)
   }
 
   return (
@@ -44,6 +49,7 @@ const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCard
             width={40}
             height={40}
             className="rounded-full object-contain"
+            onClick={() => goToProfile(post.creator.username)}
           />
         </div>
         <div className="flex flex-col">
