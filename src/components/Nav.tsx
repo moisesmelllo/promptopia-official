@@ -10,7 +10,7 @@ type ProviderType = {
 }
 
 const Nav = () => {
-  const {data: session, status } = useSession()
+  const {data: session } = useSession()
 
   const [providers, setProviders] = useState<ProviderType[] | unknown>(null)
   const [dropDownMenu, setDropDownMenu] = useState(false)

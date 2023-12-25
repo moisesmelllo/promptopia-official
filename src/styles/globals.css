@@ -121,7 +121,7 @@
 
 /* Feed Component */
 .feed {
-  @apply mt-16 mx-auto w-full flex justify-center items-center flex-col gap-2;
+  @apply mt-16 mx-auto w-full flex justify-end items-center flex-col gap-2;
 }
 
 /* Form Component */
@@ -148,7 +148,7 @@
 
 /* PromptCard Component */
 .prompt_card {
-  @apply mr-2 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 
+  @apply mr-2 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding px-6 pt-6 
   backdrop-blur-lg backdrop-filter max-w-[20rem] overflow-y-auto;
 }
 
