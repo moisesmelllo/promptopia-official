@@ -1,14 +1,17 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { connectToDB } from '@utils/database'
  
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname
+export async function middleware(request: NextRequest) {
+  await connectToDB();
 
+  const path = request.nextUrl.pathname
   const privatePath = path === '/profile'
 
   const token = request.cookies.get('next-auth.session-token')?.value || ''
-  console.log(token)
+  console.log(request)
+
   
   if (privatePath && !token) {
     return NextResponse.redirect(new URL('/', request.nextUrl))

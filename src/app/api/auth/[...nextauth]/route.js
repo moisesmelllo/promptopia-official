@@ -11,14 +11,18 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
-    async session({session}) {
-    const sessionUser = await User.findOne({
-      email: session.user.email
-    })
+    async session({session, token}) {
+      await connectToDB();
+      const sessionUser = await User.findOne({
+        email: session.user.email
+      })
 
-    session.user.id = sessionUser._id.toString();
+      session.user.id = sessionUser._id.toString();
+      session.accessToken = token.accessToken
+      sessionUser.token = session.accessToken
 
-    return session;
+      sessionUser.save();
+      return session;
 
     },
 
@@ -33,17 +37,26 @@ const handler = NextAuth({
 
         if(!userExists) {
           await User.create({
-          email: profile.email,
-          username: profile.name.replace(/\s/g, "").toLowerCase(),
-          image: profile.picture
-        })
+            email: profile.email,
+            username: profile.name.replace(/\s/g, "").toLowerCase(),
+            image: profile.picture,
+            token: ''
+          })
         }
 
         return true
       } catch (error) {
-        console.log(error);
+        console.log('here' + error);
         return false
       }
+    },
+
+    async jwt({token, account, profile}) {
+
+      if (account) {
+        token.accessToken = account.access_token
+      }
+      return token
     }
     }
 
