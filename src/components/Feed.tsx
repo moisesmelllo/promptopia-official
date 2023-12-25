@@ -2,29 +2,38 @@
 import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard"
 
+type PostType = {
+    prompt: string;
+    tag: string;
+    creator: {
+      username: string;
+    }
+}
+
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('')
-  const [posts, setPosts] = useState([])
+  const [searchedPosts, setSearchedPosts] = useState<PostType[]>()
+  const [posts, setPosts] = useState<PostType[]>([])
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    
-  }
 
+const handleSearchChange = (e: any) => {
+  setSearchText(e.target.value)
+
+  const resultadoFiltrado = posts.filter(obj => obj.prompt.toLowerCase().includes(searchText.toLowerCase()) || obj.tag.toLowerCase().includes(searchText.toLowerCase()) || obj.creator.username.toLowerCase().includes(searchText.toLowerCase()))
+  setSearchedPosts(resultadoFiltrado)
+  console.log(posts[0])
+};
   
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('api/prompt');
       const data = await response.json();
-
-      
       setPosts(data.reverse())  
       
     }
       fetchPosts()
   }, [])
-
-  console.log(posts)
 
   return (
     <section className="feed">
@@ -35,11 +44,17 @@ const Feed = () => {
           value={searchText}
           onChange={handleSearchChange}
           required
-          className="search_input peer"
+          className="search_input peer text-black"
         />
       </form>
       <div className="prompt_layout mt-10">
-        {posts && posts.map((post: any) => (
+        {searchText.length > 0 && searchedPosts!.map((post: any) => (
+              <PromptCard
+                key={post._id}
+                post={post}
+              />
+            ))}
+        {searchText.length === 0 && posts.map((post: any) => (
               <PromptCard
                 key={post._id}
                 post={post}
