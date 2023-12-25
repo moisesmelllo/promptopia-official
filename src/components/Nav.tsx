@@ -49,12 +49,6 @@ const Nav = () => {
             >
               Create Post
             </Link>
-            <Link
-              href='/profile'
-              className="outline_btn"
-            >
-              My Profile
-            </Link>
             <button
               type="button"
               onClick={() => signOut()}
@@ -63,13 +57,17 @@ const Nav = () => {
               Sign Out
             </button>
 
-            <Image 
-              src={session?.user.image || '/assets/images/logo.svg'}
-              width={37}
-              height={37}
-              alt="profile"
-              className="rounded-full"
-            />
+            <Link
+              href='/profile'
+            >
+              <Image
+                src={session?.user.image || '/assets/images/logo.svg'}
+                width={37}
+                height={37}
+                alt="profile"
+                className="rounded-full"
+              />
+            </Link>
 
           </div>
           
