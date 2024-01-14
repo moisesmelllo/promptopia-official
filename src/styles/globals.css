@@ -149,7 +149,7 @@
 /* PromptCard Component */
 .prompt_card {
   @apply h-[200px] mr-2 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding px-6 pt-6 
-  backdrop-blur-lg backdrop-filter max-w-[20rem] overflow-y-auto;
+  backdrop-blur-lg backdrop-filter max-w-[20rem] overflow-y-auto break-all;
 }
 
 .flex-center {
