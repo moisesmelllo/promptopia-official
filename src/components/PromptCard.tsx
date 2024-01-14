@@ -42,13 +42,13 @@ const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCard
   return (
     <div className="prompt_card mb-2 ">
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+        <div className="cursor-pointer mt-1">
           <Image 
             src={post.creator.image}
             alt="user_image"
             width={40}
             height={40}
-            className="rounded-full object-contain"
+            className="rounded-full"
             onClick={() => goToProfile(post.creator.username)}
           />
         </div>
@@ -60,7 +60,7 @@ const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}: PromptCard
             {post.creator.email}
           </p>
         </div>
-      <div className="copy-btn" onClick={handleCopy}>
+      <div className="copy-btn m-1" onClick={handleCopy}>
         <Image
           src={copied === post.prompt
             ? '/assets/icons/tick.svg'
