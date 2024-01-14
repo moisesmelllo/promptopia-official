@@ -8,11 +8,11 @@ import { usePathname } from "next/navigation";
 
 const MyProfile = () => {
   const path = usePathname()
-  console.log(path)
   const router = useRouter();
   const { data: session } = useSession();
   const [myPosts, setMyPosts] = useState([]);
   const name = path.split('/')[2]
+  const sessionUserName = session?.user.name.toLowerCase().replace(/\s/g, '') || ''
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -51,7 +51,7 @@ const MyProfile = () => {
 
   return (
     <Profile
-      name='My'
+      name={sessionUserName === name ? 'My' : name}
       desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
       data={myPosts}
       handleEdit={handleEdit}
